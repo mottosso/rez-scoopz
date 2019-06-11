@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import json
 import subprocess
@@ -7,7 +8,14 @@ from rez.utils.platform_ import platform_
 
 
 def _rez_name(name):
-    return name.replace("-", "_")
+    name = name.replace("-", "_")
+
+    # Remove tailing digits, such as 27 from python27
+    # NOTE: Poor-mans conversion of Scoop's poor sense
+    # of application versions
+    name = re.sub(r"(\d.)$", "", name)
+
+    return name
 
 
 def call(command, **kwargs):
@@ -57,8 +65,6 @@ def junction(src, dst):
 
 class Distribution(object):
     def __init__(self, home, name):
-        name = _rez_name(name)
-
         self._name = name
         self._home = home
         self._path = os.path.join(home, "apps", name)
@@ -178,7 +184,7 @@ class Distribution(object):
 
     @property
     def name(self):
-        return self._name
+        return _rez_name(self._name)
 
     @property
     def version(self):
