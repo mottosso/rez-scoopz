@@ -2,8 +2,9 @@
 setlocal
 
 :: Leverage Rez's Python to avoid Python as a dependency
+set CWD=%cd%
 pushd %~dp0..\python
-call rez python -u "" -m scoopz %*
+call rez python -u "" -m scoopz %cwd% %*
 
 :: Regarding pushd
 :: rez-python does not consider PYTHONPATH, as it is
@@ -21,3 +22,8 @@ call rez python -u "" -m scoopz %*
 :: The call to `setlocal` makes anything happening inside
 :: of this script isolated to this script, so pushd won't
 :: affect the calling shell, and neither would popd.
+
+:: %cwd%?
+:: Because we misuse Rez's Python by changing the current
+:: working directory, it prevents the called Python from
+:: knowing where it came from, breaking e.g. "--prefix ."
