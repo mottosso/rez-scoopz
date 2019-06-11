@@ -73,9 +73,19 @@ class Distribution(object):
         self._root = os.path.join(self._path, self._version)
 
         # Metadata is stored locally, as JSON documents
-        fname = os.path.join(home, "buckets", "main", "bucket", name + ".json")
-        with open(fname) as f:
-            self._metadata = json.load(f)
+        # Except it isn't clear from which bucket a given app
+        # it coming from, so we must search for it.
+        buckets_dir = os.path.join(home, "buckets")
+        for bucket in os.listdir(buckets_dir):
+            fname = os.path.join(buckets_dir, bucket, "bucket", name + ".json")
+
+            try:
+                with open(fname) as f:
+                    self._metadata = json.load(f)
+            except OSError:
+                continue
+            else:
+                break
 
     def __str__(self):
         return "%s-%s" % (self.name, self.version)

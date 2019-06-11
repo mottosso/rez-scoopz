@@ -44,6 +44,9 @@ def stage(msg, timing=True):
             tell("ok - %.2fs" % (time.time() - t0))
         else:
             tell("ok")
+    finally:
+        # Give the user a chance to follow along
+        time.sleep(0.2)
 
 
 def ask(msg):
@@ -100,7 +103,7 @@ def report(new, exists, destination):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("request", help=(
+    parser.add_argument("request", nargs="+", help=(
         "Packages to install, e.g. python curl"))
     parser.add_argument("--verbose", action="store_true", help=(
         "Include Scoop output amongst scoopz messages."))
