@@ -88,7 +88,7 @@ class Distribution(object):
             try:
                 with open(fname) as f:
                     self._metadata = json.load(f)
-            except OSError:
+            except IOError:
                 continue
             else:
                 break
