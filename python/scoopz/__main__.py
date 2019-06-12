@@ -203,5 +203,12 @@ if __name__ == '__main__':
 
     finally:
         sys.stdout.write("Cleaning up.. ")
-        lib.call('rmdir /S /Q "%s"' % home)
-        print("ok")
+
+        try:
+            lib.call('rmdir /S /Q "%s"' % home)
+        except (NameError, OSError):
+            print("fail")
+            exit(1)
+        else:
+            print("ok")
+            exit(0)

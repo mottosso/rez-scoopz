@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import json
+import shutil
 import subprocess
 
 from rez.utils.platform_ import platform_
@@ -60,7 +61,26 @@ def junction(src, dst):
     # Directory symbolic link supports package residing
     # on network, but temporary installation directory
     # residing locally = optimal performance
-    call('mklink /D "{dst}" "{src}"'.format(**locals()))
+    try:
+        assert not os.getenv("SCOOPZ_JUNCTION")
+        assert not os.getenv("SCOOPZ_COPY")
+        return call('mklink /D "{dst}" "{src}"'.format(**locals()))
+    except (AssertionError, OSError):
+        # Supported since Windows 10 14972 (Dec 2016)
+        pass
+
+    # Hardlinks are equally good
+    try:
+        assert not os.getenv("SCOOPZ_COPY")
+        return call('mklink /J "{dst}" "{src}"'.format(**locals()))
+    except (AssertionError, OSError):
+        # Supported within the same disk partition
+        pass
+
+    # Last resort, wholesale copy of the directory
+    # This takes about 10 seconds, 100x longer than
+    # mklink. But, what can you do?
+    return shutil.copytree(src, dst)
 
 
 class Distribution(object):
