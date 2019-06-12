@@ -4,6 +4,13 @@ Install anything from [Scoop](https://scoop.sh/) as a Rez package.
 
 <br>
 
+### Features
+
+- **Large selection** Install any of the [500+ available packages](https://github.com/ScoopInstaller/Main/tree/master/bucket) from Scoop
+- **Try before you buy** Like `apt-get` and `yum`, no packages are actually installed until you've witnessed and confirmed what Scoop comes up with, including complex dependencies.
+
+<br>
+
 ### Installation
 
 This repository is a Rez package, here's how you can install it.
