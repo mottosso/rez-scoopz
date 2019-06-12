@@ -106,5 +106,7 @@ $ rez env scoopz -- install python
 
 > Why rez-scoopz? Why not X?
 
+This project came about as a requirement for a separate project, here are the developer "journal" from there.
+
 - https://gist.github.com/mottosso/0945b2d19a1920e999fbfb61f4f301a3
 - https://gist.github.com/mottosso/5492d55f20b1f38979c8577fc5f5cfbc
