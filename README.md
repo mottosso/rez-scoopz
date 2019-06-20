@@ -2,6 +2,10 @@
 
 Install anything from [Scoop](https://scoop.sh/) as a Rez package.
 
+**See also**
+
+- [rez-pipz](https://github.com/mottosso/rez-pipz)
+
 <br>
 
 ### Features
