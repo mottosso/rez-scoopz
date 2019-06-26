@@ -1,7 +1,7 @@
 import sys as _sys
 
 name = "scoopz"
-version = "2019.05.15.6"
+version = "2019.05.15.7"
 
 # Each version of Scoop of heavily coupled with whatever its
 # repository of available packages look like at the time. It
@@ -35,8 +35,8 @@ variants = [
 def commands():
     global env
 
-    env.PATH.prepend("{root}/bin")
     env.PATH.prepend("{root}/home/apps/scoop/current/bin")  # Expose scoop.ps1
+    env.PATH.prepend("{root}/bin")
     env.PYTHONPATH.prepend("{root}/python")
 
     env.SCOOP = "{root}/home"
