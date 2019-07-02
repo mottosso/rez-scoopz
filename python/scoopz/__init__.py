@@ -49,7 +49,7 @@ def install(home, request, verbose=False):
     # E.g. python>=3.6 --> python-3.6.9
 
     lib.call([
-        "powershell", "-ExecutionPolicy", "RemoteSigned",
+        "powershell", "-ExecutionPolicy", "Bypass",
         "scoop", "install"
     ] + request,
         env=dict(os.environ, **{

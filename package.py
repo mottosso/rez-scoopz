@@ -1,7 +1,7 @@
 import sys as _sys
 
 name = "scoopz"
-version = "2019.05.15.7"
+version = "2019.05.15.8"
 
 # Each version of Scoop of heavily coupled with whatever its
 # repository of available packages look like at the time. It
