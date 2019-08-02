@@ -103,7 +103,6 @@ def report(new, exists, destination):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("cwd", help="Current working directory")
     parser.add_argument("request", nargs="+", help=(
         "Packages to install, e.g. python curl"))
     parser.add_argument("--verbose", action="store_true", help=(
@@ -132,9 +131,6 @@ if __name__ == '__main__':
         config.release_packages_path if opts.release
         else config.local_packages_path
     )
-
-    if not os.path.isabs(packagesdir):
-        packagesdir = os.path.join(opts.cwd, packagesdir)
 
     packagesdir = os.path.abspath(packagesdir)
     packagesdir = os.path.normpath(packagesdir)

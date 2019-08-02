@@ -1,7 +1,6 @@
-import sys as _sys
-
 name = "scoopz"
-version = "2019.05.15.8"
+version = "2019.05.15.9"
+requires = ["python-2.7+,<4", "bleeding_rez-2.29+"]
 
 # Each version of Scoop of heavily coupled with whatever its
 # repository of available packages look like at the time. It
@@ -18,11 +17,7 @@ _buckets = {
     )
 }
 
-# Scoop cannot require Python, as Python is one of the
-# things installed using Scoop. To address this, we leverage
-# the Python install Rez is using, which is guaranteed to be
-# either 2.7-3.7+
-build_command = "%s {root}/install.py {root} %s" % (_sys.executable, version)
+build_command = "python {root}/install.py %s" % version
 build_command += " --overwrite"
 build_command += " --bucket %s" % _buckets["main"]
 build_command += " --bucket %s" % _buckets["versions"]
@@ -34,10 +29,12 @@ variants = [
 
 def commands():
     global env
+    global alias
 
     env.PATH.prepend("{root}/home/apps/scoop/current/bin")  # Expose scoop.ps1
-    env.PATH.prepend("{root}/bin")
     env.PYTHONPATH.prepend("{root}/python")
+
+    alias("install", "python -u -m scoopz")
 
     env.SCOOP = "{root}/home"
     env.SCOOP_HOME = "{root}/home"

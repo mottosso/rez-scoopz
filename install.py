@@ -15,7 +15,6 @@ except ImportError:
     from urllib import urlretrieve
 
 parser = argparse.ArgumentParser()
-parser.add_argument("root")
 parser.add_argument("version")
 parser.add_argument("--overwrite", action="store_true")
 parser.add_argument("--bucket", action="append", metavar=(
@@ -141,13 +140,14 @@ os.makedirs(cache_dir)
 os.makedirs(shims_dir)
 
 # Our Rez files
+root = os.path.dirname(__file__)
 shutil.copytree(
-    os.path.join(opts.root, "bin"),
+    os.path.join(root, "bin"),
     os.path.join(build_dir, "bin")
 )
 
 shutil.copytree(
-    os.path.join(opts.root, "python"),
+    os.path.join(root, "python"),
     os.path.join(build_dir, "python")
 )
 
