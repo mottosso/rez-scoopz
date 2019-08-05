@@ -1,5 +1,5 @@
 name = "scoopz"
-version = "2019.05.15.9"
+version = "2019.05.15.10"
 requires = ["python-2.7+,<4", "bleeding_rez-2.29+"]
 
 # Each version of Scoop of heavily coupled with whatever its
