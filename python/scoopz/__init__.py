@@ -96,8 +96,8 @@ def deploy(distribution, target):
         # executable, which we can't put into a package as
         # packages may come from differently mounted paths
         # or network locations at any given time.
-        dirname = os.path.dirname(relpath)
-        commands.add("env.PATH.prepend('{root}/app/%s')" % dirname)
+        dirname = os.path.dirname(relpath).replace("\\", "/")
+        commands.add("env.PATH.prepend(r'{root}/app/%s')" % dirname)
 
     maker.commands = "\n".join(commands)
 
