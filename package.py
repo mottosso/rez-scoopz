@@ -1,5 +1,5 @@
 name = "scoopz"
-version = "2019.05.15.10"
+version = "2019.10.23.3"
 requires = ["python-2.7+,<4", "bleeding_rez-2.29+"]
 
 # Each version of Scoop of heavily coupled with whatever its
@@ -9,11 +9,11 @@ requires = ["python-2.7+,<4", "bleeding_rez-2.29+"]
 _buckets = {
     "main": (
         "https://github.com/ScoopInstaller/Main/archive/"
-        "0dc4efce64c2e3ef2893e58a604663318dbbf65a.zip"
+        "cdd254db8f13e4d24dad4999296404bfae168bcf.zip"
     ),
     "versions": (
         "https://github.com/ScoopInstaller/Versions/archive/"
-        "7346b7d9676a5940a496ddb5f1844e85d9b9919a.zip"
+        "a3cf544c40082857f160cb7df55ae99093381dcd.zip"
     )
 }
 

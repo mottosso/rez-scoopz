@@ -157,6 +157,29 @@ class Distribution(object):
 
             yield fname, alias, args
 
+    def envs(self):
+        """Some packages provide environment bespoke variables"""
+        envs = self._metadata.get("env_add_path")
+
+        if not envs:
+            return
+
+        # Env may be either "some_value" or ["some_value", "alias", "value2"]
+        if not isinstance(envs, (tuple, list)):
+            envs = [envs]
+
+        for value in envs:
+
+            if not isinstance(value, (tuple, list)):
+                value = [value]
+
+            value = os.pathsep.join(value)
+
+            # Avoid wrong-sided backslashes
+            value = value.replace("\\", "/")
+
+            yield "PATH", value
+
     @property
     def root(self):
         return self._root

@@ -99,6 +99,20 @@ def deploy(distribution, target):
         dirname = os.path.dirname(relpath).replace("\\", "/")
         commands.add("env.PATH.prepend(r'{root}/app/%s')" % dirname)
 
+    # Handle PATH environment variables
+    # NOTE: This presumes all environment variables are paths,
+    # and that they branch out from the app/ directory. There may(?)
+    # be variables that aren't paths too
+    for key, value in distribution.envs():
+        commands.add("env.%s.prepend('{root}/app/%s')" % (key, value))
+
+    # Handle the odd case of no commands being present
+    # This is probably a bad package then
+    if not commands:
+        print("WARNING: No commands made by this package, "
+              "inspect it to see if it's allright")
+        commands.add("pass")
+
     maker.commands = "\n".join(commands)
 
     package = maker.get_package()
