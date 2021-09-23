@@ -9,11 +9,11 @@ requires = ["python-2.7+,<4", "bleeding_rez-2.29+"]
 _buckets = {
     "main": (
         "https://github.com/ScoopInstaller/Main/archive/"
-        "f3a0295e535842bc7bc81dd4d8bd09f5e7e5d0d8.zip"
+        "716e231704fd96a8a8b8a80e3d13934ebda4c687.zip"
     ),
     "versions": (
         "https://github.com/ScoopInstaller/Versions/archive/"
-        "736c36536e22198029b24c16c073fe2151b85cbe.zip"
+        "31444d45647831655ff8b5ec7a89854d8f8c3786.zip"
     )
 }
 
